@@ -1,0 +1,317 @@
+/* บังคับให้ทุก Element คำนวณความกว้าง-สูงรวม border และ padding เพื่อไม่ให้เลยกรอบ */
+* {
+    box-sizing: border-box;
+}
+
+/* ตั้งค่าพื้นฐานของทั้งหน้าเว็บ */
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    line-height: 1.65;
+    color: #000000;
+    background: #FFFFFF;
+}
+
+/* ตกแต่งส่วนหัวและส่วนท้ายเว็บ พื้นหลังสีน้ำเงินเข้ม (#31487A) ตัวอักษรสีขาว */
+header, footer {
+    padding: 1rem;
+    color: #FFFFFF;
+    background: #31487A;
+}
+
+/* ชื่อเว็บไซต์ในส่วนหัว */
+.site-name {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* จัดรายการเมนูนำทางให้เรียงแนวนอน ตัดขึ้นบรรทัดใหม่ได้ และเว้นช่องไฟ */
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* รูปแบบลิงก์เมนู ตัวอักษรสีขาว มุมมน */
+nav a {
+    display: block;
+    padding: 0.35rem 0.75rem;
+    color: #ffffff;
+    border-radius: 0.35rem;
+}
+
+/* เปลี่ยนสีพื้นหลังและตัวอักษรเมนู เมื่อเอาเมาส์ชี้หรือเป็นหน้าที่กำลังเปิดอยู่ */
+nav a:hover, nav a[aria-current="page"] {
+    background: #F8E8D3;
+    color: #174c3c;
+}
+
+/* เส้นขอบเน้นลิงก์เมื่อใช้คีย์บอร์ด Tab โฟกัส (ช่วยเรื่องการเข้าถึง / Accessibility) */
+a:focus-visible {
+    outline: 3px solid #c67400;
+    outline-offset: 3px;
+}
+
+/* พื้นที่เนื้อหาหลัก กว้างไม่เกิน 56rem และจัดให้อยู่กึ่งกลางหน้าจอ */
+main {
+    width: min(92%, 56rem);
+    margin: 2rem auto;
+}
+
+/* กล่องการ์ดเนื้อหา พื้นหลังสีฟ้าอ่อน (#8FB3E2) มีเส้นขอบและมุมมน */
+.card {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #d1e2d7;
+    border-radius: 0.75rem;
+    background: #8FB3E2;
+}
+
+/* รูปภาพทั่วไป ปรับขนาดตามหน้าจอ รักษาสัดส่วน และทำมุมมน */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+/* ปุ่มทั่วไป สี Space cadet (#1E2E4F) ตัวอักษรสีขาว ไม่มีเส้นใต้ลิงก์ */
+.button {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    border-radius: 0.35rem;
+    background: #1E2E4F;
+    color: white;
+    text-decoration: none;
+}
+
+/* ===== LOGIN PAGE ===== */
+
+/* หากหน้านี้มี .login-container ให้เปลี่ยนพื้นหลังและจัดกล่องล็อกอินไว้กึ่งกลางทั้งแนวตั้ง-แนวนอน */
+body:has(.login-container) {
+    background-color: #f3f7f4;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* กล่องฟอร์มเข้าสู่ระบบ สีขาว กว้างสูงสุด 420px มีเงาจางๆ */
+.login-container {
+    width: 420px;
+    max-width: 90%;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+}
+
+/* หัวข้อหน้าเข้าสู่ระบบ */
+.login-container h2 {
+    text-align: center;
+    color: #204b3e;
+    margin-bottom: 15px;
+}
+
+/* คำบรรยายย่อยใต้หัวข้อ */
+.login-container .subtitle {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+/* ป้ายชื่อกำกับช่องกรอกข้อมูล */
+.login-container label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #333;
+}
+
+/* ช่องกรอกข้อความและช่องเลือก */
+.login-container input,
+.login-container select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    margin-bottom: 17px;
+    font-size: 13px;
+}
+
+/* กล่องรวมช่องรหัสผ่านและปุ่มด้านข้างให้อยู่แถวเดียวกัน */
+.login-container .password-box {
+    display: flex;
+    gap: 7px;
+}
+
+/* ให้ช่องรหัสผ่านขยายเต็มพื้นที่ที่เหลือ และหดได้เมื่อจอแคบ */
+.login-container .password-box input {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ปุ่มด้านข้างช่องรหัสผ่าน (เช่น ปุ่มดู/ซ่อนรหัสผ่าน) */
+.login-container .password-box button {
+    height: 40px;
+    padding: 0 15px;
+    background: #204b3e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ปุ่มกดเข้าสู่ระบบ */
+.login-container .login-btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    background: #204b3e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* เปลี่ยนสีปุ่มให้เข้มขึ้นเมื่อเอาเมาส์ชี้ */
+.login-container .login-btn:hover,
+.login-container .password-box button:hover {
+    background: #16382e;
+}
+
+/* ===== หน้าแรก ===== */
+
+/* จัดข้อความในหน้าแรกให้อยู่กึ่งกลาง */
+.home-page {
+    text-align: center;
+}
+
+/* หัวข้อหลักของหน้าแรก */
+.home-page h1 {
+    text-align: center;
+    color: #204b3e;
+    margin-bottom: 15px;
+}
+
+/* คำบรรยายรองของหน้าแรก */
+.home-subtitle {
+    color: #204b3e;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* กล่องรูปภาพหน้าแรก */
+.home-image {
+    width: 100%;
+    margin: 20px auto;
+}
+
+/* รูปภาพหน้าแรก สูงคงที่ 320px และครอบเต็มกรอบแบบไม่เสียสัดส่วน */
+.home-image img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ย่อหน้าข้อความลูกโดยตรงของ .home-page จัดชิดซ้าย */
+.home-page > p {
+    text-align: left;
+    margin-top: 20px;
+}
+
+/* เว้นระยะห่างด้านบนของส่วนท้ายเว็บ */
+footer {
+    margin-top: 20px;
+}
+
+/* ===== ระบบสไลด์ภาพหน้าแรก ===== */
+
+/* กรอบสไลด์โชว์ ซ่อนรูปส่วนที่เกินออกนอกกรอบ */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* แถบเรียงรูปภาพในแนวนอน และกำหนดความนุ่มนวลตอนเลื่อนสไลด์ */
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+}
+
+/* แต่ละรูปในสไลด์ กว้างเต็มกรอบ ไม่หดตัว และครอบเต็มพื้นที่ */
+.slides img {
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    flex-shrink: 0;
+}
+
+/* ปุ่มลูกศรซ้าย-ขวา ลอยอยู่กึ่งกลางแนวตั้งของสไลด์ */
+.slider button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 12px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* เข้มขึ้นเมื่อเอาเมาส์ชี้ปุ่มเลื่อนสไลด์ */
+.slider button:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+/* ตำแหน่งปุ่มก่อนหน้า (ซ้าย) */
+.prev {
+    left: 10px;
+}
+
+/* ตำแหน่งปุ่มถัดไป (ขวา) */
+.next {
+    right: 10px;
+}
+
+/* กล่องจุดบอกลำดับสไลด์ */
+.dots {
+    text-align: center;
+    margin: 12px 0;
+}
+
+/* จุดบอกลำดับสไลด์แต่ละจุด (สีเทา) */
+.dots span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+}
+
+/* จุดของสไลด์ที่กำลังแสดงอยู่ (สีเขียวเข้ม) */
+.dots span.active {
+    background: #204b3e;
+}
+```[cite: 3, 4]
+
+*(หมายเหตุ: หากปุ่มไปหน้าถัดไปใน HTML ของคุณใช้คลาสอื่นที่ไม่ใช่ `.button` เช่น `.next-btn` หรือ `.page-btn` สามารถบอกชื่อคลาสได้เลยครับ ผมปรับเพิ่มให้ได้ทันที)*
